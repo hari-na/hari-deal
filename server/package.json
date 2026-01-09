@@ -1,0 +1,12 @@
+{
+  "name": "hari-deal-server",
+  "version": "1.0.0",
+  "description": "Hari Deal WebSocket Server",
+  "main": "server.js",
+  "dependencies": {
+    "ws": "^8.12.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

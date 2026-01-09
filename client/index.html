@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hari Deal | Bengaluru's Favorite Trading Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Main Landing / Menu -->
+        <div id="menu-screen" class="screen">
+            <div class="hero">
+                <h1 class="logo">HARI <span>DEAL</span></h1>
+                <p class="tagline">The ultimate Bengaluru property trading card game.</p>
+            </div>
+            <div class="menu-options">
+                <button onclick="showScreen('lobby-screen', 'solo')" class="btn-primary">Solo vs AI</button>
+                <button onclick="showScreen('lobby-screen', 'local')" class="btn-secondary">Local Pass-and-Play</button>
+                <button onclick="showScreen('lobby-screen', 'online-host')" class="btn-accent">Create Online Room</button>
+                <button onclick="promptRoomCode()" class="btn-outline">Join Online Room</button>
+            </div>
+            <div class="footer">
+                <p>Faithful to Monopoly Deal rules. Inspired by the streets of Oru Bengaluru.</p>
+            </div>
+        </div>
+
+        <!-- Lobby Screen -->
+        <div id="lobby-screen" class="screen hidden">
+            <button class="back-btn" onclick="showScreen('menu-screen')">← Back</button>
+            <h2 id="lobby-title">Lobby</h2>
+            <div id="room-info" class="hidden">
+                <p>Room Code: <span id="display-room-code">----</span></p>
+                <p>Share this code with your friends!</p>
+            </div>
+            <div id="player-list">
+                <!-- Players will appear here -->
+            </div>
+            <div class="lobby-controls">
+                <button id="start-game-btn" class="btn-primary" onclick="startGame()">Start Game</button>
+            </div>
+        </div>
+
+        <!-- Game Table -->
+        <div id="game-screen" class="screen hidden">
+            <div class="game-container">
+                <!-- Opponents Area -->
+                <div id="opponents-area" class="opponents-container">
+                    <!-- Dynamic opponent boards -->
+                </div>
+
+                <!-- Center Area: Deck, Discard, Logs -->
+                <div class="table-center">
+                    <div class="deck-area">
+                        <div id="deck" class="card-back">
+                            <span id="deck-count">110</span>
+                        </div>
+                        <div id="discard-pile" class="card-back empty">
+                            <span>Discard</span>
+                        </div>
+                    </div>
+                    <div id="game-logs" class="logs-container">
+                        <div class="log-entry">Welcome to Hari Deal!</div>
+                    </div>
+                </div>
+
+                <!-- Current Player Area -->
+                <div id="player-area" class="player-container">
+                    <div class="player-stats">
+                        <div class="player-info">
+                            <span class="player-name">You</span>
+                            <span class="player-moves">Moves left: <b id="moves-left">3</b></span>
+                        </div>
+                        <div class="player-inventory">
+                            <div class="bank-preview">Bank: <span id="bank-total">₹0M</span></div>
+                            <div class="win-progress">Sets: <span id="sets-count">0/3</span></div>
+                        </div>
+                    </div>
+
+                    <div id="hand-scroller" class="hand-container">
+                        <div id="hand" class="cards-fan">
+                            <!-- Cards will be injected here -->
+                        </div>
+                    </div>
+
+                    <div id="player-board" class="player-board">
+                        <div class="property-grid" id="my-properties">
+                            <!-- Property sets injected here -->
+                        </div>
+                    </div>
+
+                    <div class="action-bar">
+                        <button id="end-turn-btn" class="btn-accent" onclick="handleEndTurn()" disabled>End Turn</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overlays -->
+            <div id="action-overlay" class="overlay hidden">
+                <div class="overlay-content">
+                    <h3 id="overlay-title">Card Action</h3>
+                    <p id="overlay-desc">What would you like to do with this card?</p>
+                    <div id="overlay-actions" class="overlay-buttons">
+                        <!-- Buttons like "Pay as Money", "Play as Property", "Use Action" -->
+                    </div>
+                    <button class="btn-close" onclick="closeOverlay()">Cancel</button>
+                </div>
+            </div>
+
+            <!-- Notification Toast -->
+            <div id="toast" class="toast hidden">Card Played!</div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="engine.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
