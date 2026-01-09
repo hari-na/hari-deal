@@ -1,11 +1,12 @@
 const WebSocket = require('ws');
 const { GameEngine } = require('../client/engine');
 
-const wss = new WebSocket.Server({ port: 8080 });
+const PORT = process.env.PORT || 8080;
+const wss = new WebSocket.Server({ port: PORT });
 
 const rooms = new Map(); // roomCode -> { players: [], game: GameEngine }
 
-console.log('Hari Deal Server running on port 8080');
+console.log(`Hari Deal Server running on port ${PORT}`);
 
 wss.on('connection', (ws) => {
     let currentRoom = null;

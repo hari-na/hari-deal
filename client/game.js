@@ -6,7 +6,9 @@ let game = null;
 let myPlayerId = 'p1';
 let selectedMode = 'solo';
 let socket = null;
-const SERVER_URL = 'ws://localhost:8080';
+const SERVER_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'ws://localhost:8080'
+    : 'wss://hari-deal-server.onrender.com'; // Replace with your actual Render server name if different
 
 // UI Elements
 const screens = {

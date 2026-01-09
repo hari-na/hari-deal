@@ -1,0 +1,19 @@
+services:
+  # The Game Server (WebSocket)
+  - type: web
+    name: hari-deal-server
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    rootDir: server
+    envVars:
+      - key: NODE_VERSION
+        value: 18.0.0
+
+  # The Game Client (Static Site)
+  - type: static
+    name: hari-deal-client
+    env: static
+    plan: free
+    publishDir: client
