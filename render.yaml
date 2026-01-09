@@ -12,7 +12,7 @@ services:
         value: 18.0.0
 
   # The Game Client (Static Site)
-  - type: web
+  - type: static_site
     name: hari-deal-client
     env: static
     plan: free
